@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Eli</title>
+<script src="less.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+  <div class="eli_container">
+    <div class="eli_classmate_prompt">
+      <p>
+        Knowing how to write a five-paragraph essay is essential for developing good composition skills. It gives the author an easy format for clear organization and explanation of a topic. Many literature and composition classes require five-paragraph essays because of the simplicity and clarity they bring to a specific topic, and that is why understanding the five-paragraph essay is important.
+      </p>
+      <p>
+        A five-paragraph essay consists of three parts—the introduction, the body, and the conclusion—and each part plays a role that is vital to the structure and presentation of the essay.  The introduction consists of one paragraph, two main body paragraphs, and a conclusion paragraph.
+      </p>
+    </div>
+    <main class="eli_add_comment">
+      <section>
+        <h1>Trait Identification</h1>
+      </section>
+      <section>
+        <h1>Scaled Responses</h1>
+      </section>
+      <section class="contextual_comments">
+        <h1>Contextual Comments</h1>
+        <p class="helpful_tip"><strong>Helpful Tip</strong>: For drafts displayed on the left, highlighting a passage before clicking "Add a Comment" will let the writer see exactly where your feedback applies!</p>
+        <ol class="comment_list">
+          <li>
+            <p class="hover">I think the writer could make their introduction sentence a little stronger.  Maybe use some more logos, ethos, or pathos in their opening statement to draw  appeal?</p>
+            <menu>
+              <a href="javascript:void(0);">Edit Comment</a>
+              <a href="javascript:void(0);">Delete Comment</a>
+            </menu>
+          </li>
+          <li>
+            <span class="tooltip" style="display: none;">click to edit</span>
+            <p>Try using more imagery in this passage.  I think the paragraph would become stronger.</p>
+            <menu>
+              <a href="javascript:void(0);">Edit Comment</a>
+              <a href="javascript:void(0);">Delete Comment</a>
+            </menu>
+          </li>
+          <li>
+            <span class="tooltip" style="display: none;">click to edit</span>
+            <p>This here is a great sentence!  I think you really made your argument’s point with this phrase here.  Try putting something like this in your second paragraph as well!</p>
+            <menu>
+              <a href="javascript:void(0);">Edit Comment</a>
+              <a href="javascript:void(0);">Delete Comment</a>
+            </menu>
+          </li>
+        </ol>
+        <div class="new_comment" style="display: none;">
+          <h2>Add New Comment</h2>
+          <textarea rows="5" cols="30" placeholder="Type your new comment here..." class="textarea"></textarea>
+          <p class="helpful_tip"><strong>Helpful Tip</strong>: Keep comments short and focused.  Add a new comment for each idea - add as many comments as you need!</p>
+          <menu>
+            <a href="javascript:void(0)" class="btn_new_style save_comment">Save Comment</a>
+            <a href="javascript:void(0)" class="cancel_comment">Cancel</a>
+          </menu>
+        </div>
+        <a href="javascript:void(0)" class="btn_new_style add_comment">Add Another Comment</a>
+      </section>
+      <section>
+        <h1>Final Comments</h1>
+      </section>
+    </main>
+  </div>
+</body>
+<script type="">
+  // this shows and hides the add_comment div when you click the 'add comment' button
+  $(".add_comment").click(function() {
+    $(this).hide();
+    $(".new_comment").fadeIn();
+  });
+  $(".cancel_comment").click(function() {
+    $(".new_comment").hide();
+    $(".add_comment").show();
+  });
+
+  // tooltip for paragraphs
+    var changeTooltipPosition = function(event) {
+      var tooltipX = event.pageX - 8;
+      var tooltipY = event.pageY + 8;
+      $('div.tooltip').css({top: tooltipY, left: tooltipX});
+    };
+   
+    var showTooltip = function(event) {
+      $('div.tooltip').remove();
+      $('<div class="tooltip">click to edit</div>')
+              .appendTo('body');
+      changeTooltipPosition(event);
+    };
+   
+    var hideTooltip = function() {
+       $('div.tooltip').remove();
+    };
+   
+    $(".hover").bind({
+     mousemove : changeTooltipPosition,
+     mouseenter : showTooltip,
+     mouseleave: hideTooltip
+    });
+
+  // when clicking on comments replace them with textareas
+  $(".comment_list p.hover").click(function () {
+    $(this).replaceWith($('<textarea>' + this.innerHTML + '</textarea>'));
+    $(".tooltip").hide();
+  });
+
+  //resize textareas boxes to fit their content when they are typed in
+  jQuery("textarea").on("keydown keyup", function(){
+    this.style.height = "1px";
+    this.style.height = (this.scrollHeight) + "px"; 
+  });
+</script>
+</html>

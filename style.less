@@ -1,0 +1,274 @@
+/* Eli legacy styles */
+body, html {
+  background: #005012;
+  margin: 0px;
+  padding: 0px;
+  color: #333;
+  font-family: arial, helvetica;
+}
+.eli_container {
+    background: #dee5ee;
+    width: 900px;
+    margin: 0 auto;
+    height: 1200px;
+    padding: 15px;
+}
+.eli_classmate_prompt {
+    background: white;
+    border: 1px solid #738fc1;
+    padding: 15px 20px;
+    line-height: 2em;
+    color: #353535;
+    width: 45%;
+    float: left;
+    font-size: 15px;
+}
+
+h1 {
+    display: block;
+    font-size: 1.4em;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+    color: #002c61;
+    border-bottom: 1px solid #002c61;
+    width: 100%;
+    margin-top:  25px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+section h1 {
+    background: url('images/informationIcon.png') no-repeat 100% 55%;
+    padding: 5px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
+}
+
+.eli_add_comment {
+    width: 47%;
+    float: right;
+    padding-right: 5px;
+}
+/* Eli 'legacy' styles end.  Everything below is now new for the redesign -------------------------------------------------------------------------------- */
+
+.eli_classmate_prompt p::selection {
+  background: #fff1d2; /* Safari */
+  }
+
+.eli_classmate_prompt p::-moz-selection {
+  background: #fff1d2; /* Firefox */
+}
+
+section {
+    color: #353535;
+    font-size: 15px;
+    float: left;
+    width: 100%;
+}
+
+section .helpful_tip {
+    font-size: 13px;
+    color: #6b6b6b;
+    font-style: italic;
+    line-height: 1.5em;
+    margin: 10px 0px 10px 0px;
+}
+
+section menu {
+    padding-left: 0px;
+    border-top: 1px dashed #c4cad2;
+    margin: 0px 0px 0px 0px;
+    padding: 4px 0px;
+}
+
+section ol {
+    padding: 0px;
+    counter-reset: item;
+}
+
+section ol > li {
+  margin: 0;
+  padding: 0 0 0 26px;
+  list-style-type: none;
+  counter-increment: item;
+}
+
+section ol > li:before {
+  margin-left: -35px;
+  display: inline-block;
+  width: 1.5em;
+  padding-right: 0.5em;
+  font-weight: bold;
+  text-align: right;
+  content: counter(item) ".";
+}
+
+section ol li {
+  line-height: 1.5em;
+  border-bottom: 1px solid #c4cad2;
+  line-height: 1.7em;
+  margin: 0px 0px 25px 0px;
+}
+
+section ol li p {
+  margin: -25px 0px 0px 0px;
+  padding: 0px 0px 5px 0px;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+section ol li p:hover {
+  cursor: pointer;
+  background: #ebeef5;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+}
+
+section menu a {
+  color: #1a6ec3;
+  text-decoration: none;
+  font-size: 12px;
+  border-right: 1px solid #c4cad2;
+}
+
+section menu a:first-child {
+  padding:  5px 15px 5px 0px;
+}
+section menu a:last-child {
+  border: none;
+  padding: 5px 0px 5px 10px;
+}
+section menu a:hover {
+  text-decoration: underline;
+}
+
+section textarea {
+  max-width: 370px;
+  width: 370px;
+  height: 45px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #cdd1d6;
+  box-shadow: inset 2px 2px 5px #eaebec;
+  padding: 6px 0px 0px 10px;
+  line-height: 1.5em;
+}
+
+.btn_new_style {
+  font-size: 13px;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  background: #4992dc;
+  background: -moz-linear-gradient(top, #4992dc 0%, #166bc1 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4992dc), color-stop(100%,#166bc1)); 
+  background: -webkit-linear-gradient(top, #4992dc 0%,#166bc1 100%);
+  background: -ms-linear-gradient(top, #4992dc 0%,#166bc1 100%);
+  background: linear-gradient(to bottom, #4992dc 0%,#166bc1 100%);
+  border: 1px solid #215fa1;
+  text-shadow: 1px 1px 0px #236bb6;
+  border-radius: 2px;
+  box-shadow: inset 1px 1px 1px #97c1ec;
+}
+
+.btn_new_style:hover {
+  background: #2576c9;
+  background: -moz-linear-gradient(top, #2576c9 0%, #3a81c9 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2576c9), color-stop(100%,#3a81c9));
+  background: -webkit-linear-gradient(top, #2576c9 0%,#3a81c9 100%);
+  background: -ms-linear-gradient(top, #2576c9 0%,#3a81c9 100%);
+  background: linear-gradient(to bottom, #2576c9 0%,#3a81c9 100%);
+}
+
+div.new_comment {
+  background: #ebf0f6;
+  border: 1px solid #ccd7e6;
+  padding: 20px 20px 30px 20px;
+  margin-top: -5px;
+}
+
+div.new_comment .helpful_tip {
+  margin-top: 5px;
+}
+
+div.new_comment h2 {
+  font-size: 17px;
+  margin: 0px 0px 8px 0px;
+  color: #002c61;
+}
+
+div.new_comment a.save_comment {
+  padding: 10px 20px;
+}
+
+div.new_comment a.save_comment:hover {
+  text-decoration: none;
+}
+
+div.new_comment menu {
+  border: none;
+  margin-top: 15px;
+}
+
+div.new_comment a:last-child {
+  font-size: 14px;
+}
+
+.tooltip {
+  float: right;
+  position: absolute;
+  background: #0085f2;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 11px;
+  padding: 4.5px;
+  line-height: 11px;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  margin-top: -37px;
+  margin-left: -27px;
+}
+
+.tooltip:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0; 
+  height: 0; 
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #0085f2;
+  margin: 3px 0px 0px 25px;
+  cursor: pointer;
+}
+
+.click_to_edit{
+  margin:8px;
+  padding:8px;
+  border:1px solid blue;
+  background-color:yellow;
+  position: absolute;
+  z-index: 2;
+}
+
+.comment_list textarea {
+  display: block;
+  margin-top: -29px;
+  padding-right: 20px;
+  margin-bottom: 10px;
+  min-height: 80px;
+}
+
+.add_comment {
+  float: left;
+  margin-top: 10px;
+}
