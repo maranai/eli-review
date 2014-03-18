@@ -243,3 +243,28 @@ div.new_comment a:last-child {
   float: left;
   margin-top: 10px;
 }
+
+.selected, .selected_span, .comment_span {
+  background: #fff1d2;
+  cursor: pointer;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  padding: 3px 0px;
+}
+
+.selected:hover, .selected_span:hover, .comment_span:hover {
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+}
+
+.add_inline_comment {
+  cursor: pointer;
+  margin-top: -25px;
+  margin-left: -22px;
+  z-index: 999;
+  text-decoration: none;
+}
+
+.no_background {
+  background: transparent;
+}

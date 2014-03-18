@@ -11,7 +11,7 @@
   <div class="eli_container">
     <div class="eli_classmate_prompt">
       <p>
-        Knowing how to write a five-paragraph essay is essential for developing good composition skills. It gives the author an easy format for clear organization and explanation of a topic. Many literature and composition classes require five-paragraph essays because of the simplicity and clarity they bring to a specific topic, and that is why understanding the five-paragraph essay is important.
+        <bdi class="second_comment_span">Knowing how to write a five-paragraph essay is</bdi> essential for developing good composition skills. It gives the author an easy format for clear organization and explanation of a topic. Many literature and composition classes require five-paragraph essays because of the simplicity and clarity they bring to a specific topic, and that is why understanding the five-paragraph essay is important.
       </p>
       <p>
         A five-paragraph essay consists of three parts—the introduction, the body, and the conclusion—and each part plays a role that is vital to the structure and presentation of the essay.  The introduction consists of one paragraph, two main body paragraphs, and a conclusion paragraph.
@@ -29,7 +29,15 @@
         <p class="helpful_tip"><strong>Helpful Tip</strong>: For drafts displayed on the left, highlighting a passage before clicking "Add a Comment" will let the writer see exactly where your feedback applies!</p>
         <ol class="comment_list">
           <li>
-            <p class="hover">I think the writer could make their introduction sentence a little stronger.  Maybe use some more logos, ethos, or pathos in their opening statement to draw  appeal?</p>
+            <p class="hover" contentEditable>I think the writer could make their introduction sentence a little stronger.  Maybe use some more logos, ethos, or pathos in their opening statement to draw  appeal?</p>
+            <menu>
+              <a href="javascript:void(0);" class="change_link">Edit Comment</a>
+              <a href="javascript:void(0);">Delete Comment</a>
+            </menu>
+          </li>
+          <li>
+            <span class="tooltip" style="display: none;">click to edit</span>
+            <p contentEditable>Try using more imagery in this passage.  I think the paragraph would become stronger.</p>
             <menu>
               <a href="javascript:void(0);">Edit Comment</a>
               <a href="javascript:void(0);">Delete Comment</a>
@@ -37,22 +45,14 @@
           </li>
           <li>
             <span class="tooltip" style="display: none;">click to edit</span>
-            <p>Try using more imagery in this passage.  I think the paragraph would become stronger.</p>
-            <menu>
-              <a href="javascript:void(0);">Edit Comment</a>
-              <a href="javascript:void(0);">Delete Comment</a>
-            </menu>
-          </li>
-          <li>
-            <span class="tooltip" style="display: none;">click to edit</span>
-            <p>This here is a great sentence!  I think you really made your argument’s point with this phrase here.  Try putting something like this in your second paragraph as well!</p>
+            <p contentEditable>This here is a great sentence!  I think you really made your argument’s point with this phrase here.  Try putting something like this in your second paragraph as well!</p>
             <menu>
               <a href="javascript:void(0);">Edit Comment</a>
               <a href="javascript:void(0);">Delete Comment</a>
             </menu>
           </li>
         </ol>
-        <div class="new_comment" style="display: none;">
+        <div class="new_comment" id="additional_comment" style="display: none;">
           <h2>Add New Comment</h2>
           <textarea rows="5" cols="30" placeholder="Type your new comment here..." class="textarea"></textarea>
           <p class="helpful_tip"><strong>Helpful Tip</strong>: Keep comments short and focused.  Add a new comment for each idea - add as many comments as you need!</p>
@@ -103,17 +103,84 @@
      mouseenter : showTooltip,
      mouseleave: hideTooltip
     });
+    $(".hover").hover(function() {
+      $(".second_comment_span").addClass("comment_span");
+    }, function() {
+      $(".second_comment_span").removeClass("comment_span");
+    });
 
   // when clicking on comments replace them with textareas
   $(".comment_list p.hover").click(function () {
-    $(this).replaceWith($('<textarea>' + this.innerHTML + '</textarea>'));
+    // Try using  ContentEdible  instead?  $(this).replaceWith($('<textarea>' + this.innerHTML + '</textarea>'));
     $(".tooltip").hide();
+    $(".change_link").html("Save Comment");
+  });
+
+  $(".change_link").click(function() {
+    $(this).html("Edit Comment");
   });
 
   //resize textareas boxes to fit their content when they are typed in
   jQuery("textarea").on("keydown keyup", function(){
     this.style.height = "1px";
     this.style.height = (this.scrollHeight) + "px"; 
+  });
+
+  // Add a span around the text that the user highlights on the left. also popup the "add comment" little tag when text is highlighted on the left
+  function Discussion(){       
+    var $this = this;
+    $(".eli_classmate_prompt p").bind("mouseup",function(){
+        $this.selectText($this);
+    });
+  }
+  Discussion.prototype.selectText = function($this){
+      var tooltip = "<a href='#additional_comment' class='tooltip add_inline_comment'>add comment</a>";
+      $("mark").contents().unwrap();
+      $("mark").remove();
+      //$this.removeEmptyResponses($this);
+      var selection = $this.getSelection(); 
+      var range = selection.getRangeAt(0);
+      var cssclass = $(selection.anchorNode.parentNode).attr("class");
+      if(selection.toString().length > 2){
+          $this.startPoint = selection.anchorOffset;
+          $this.endPoint = selection.extentOffset;
+          var newNode2 = document.createElement("span");
+          var newNode = document.createElement("mark");
+          range.surroundContents(newNode2);
+          range.surroundContents(newNode);
+          $("mark").attr('class', 'selected');
+          $("span").attr('class', 'selected_span');
+          $(".add_inline_comment").hide();
+          $(".selected_span").addClass("no_background");
+          $(tooltip).hide().insertBefore("mark").fadeIn(200);
+          console.log($("mark"));
+          var selected_text = $(".selected").html();
+          //alert(selected_text);
+      }
+
+  }
+  Discussion.prototype.getSelection = function(){
+      if(window.getSelection){
+          return window.getSelection();
+      }
+      else if(document.getSelection){
+          return document.getSelection();
+      }
+      else if(document.selection){
+          return document.selection.createRange().text;
+      }
+  }
+  var discussion = new Discussion();
+
+  // when the user clicks the 'add inline prompt' tooltip, open up the add comment box below and smooth scroll down to that part on the page.
+  $("p").on('click', '.add_inline_comment', function() {
+    $(this).remove();
+    $(".add_comment").hide();
+    $(".new_comment").fadeIn();
+  });
+
+  $(".save_comment").click(function() {
+    location.reload();
   });
 </script>
 </html>
